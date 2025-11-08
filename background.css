@@ -1,0 +1,86 @@
+/* Fondo animado con gradiente dinámico */
+.background-fallback {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 100% 0%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 0% 100%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Patrón de fondo elegante */
+.background-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+/* Partículas flotantes para efecto de video */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: particleFloat 25s infinite linear;
+}
+
+.particle:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-delay: 0s; animation-duration: 30s; }
+.particle:nth-child(2) { width: 60px; height: 60px; left: 20%; animation-delay: 5s; animation-duration: 25s; }
+.particle:nth-child(3) { width: 40px; height: 40px; left: 30%; animation-delay: 10s; animation-duration: 35s; }
+.particle:nth-child(4) { width: 100px; height: 100px; left: 40%; animation-delay: 15s; animation-duration: 28s; }
+.particle:nth-child(5) { width: 50px; height: 50px; left: 50%; animation-delay: 3s; animation-duration: 32s; }
+.particle:nth-child(6) { width: 70px; height: 70px; left: 60%; animation-delay: 8s; animation-duration: 27s; }
+.particle:nth-child(7) { width: 90px; height: 90px; left: 70%; animation-delay: 12s; animation-duration: 29s; }
+.particle:nth-child(8) { width: 45px; height: 45px; left: 80%; animation-delay: 18s; animation-duration: 31s; }
+.particle:nth-child(9) { width: 65px; height: 65px; left: 90%; animation-delay: 7s; animation-duration: 26s; }
+.particle:nth-child(10) { width: 55px; height: 55px; left: 15%; animation-delay: 13s; animation-duration: 33s; }
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+    }
+}

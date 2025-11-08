@@ -1,0 +1,827 @@
+:root {
+    --bg-color: #f8f9fa;
+    --container-bg: #ffffff;
+    --text-color: #333333;
+    --text-secondary: #666666;
+    --accent-color: #6c5ce7;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-radius: 16px;
+    --transition-speed: 0.3s;
+    
+    /* Colores de redes sociales */
+    --instagram: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    --tiktok: #000000;
+    --youtube: #FF0000;
+    --twitter: #1DA1F2;
+    --facebook: #4267B2;
+    --onlyfans: #00AFF0;
+    --whatsapp: #25D366;
+    --telegram: #0088cc;
+    --premium: linear-gradient(45deg, #FFD700, #FFA500);
+}
+
+.dark-theme {
+    --bg-color: #121212;
+    --container-bg: #1e1e1e;
+    --text-color: #f8f9fa;
+    --text-secondary: #b0b0b0;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Preloader */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.preloader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Optimización de imágenes */
+img[data-src] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+img.loaded {
+    opacity: 1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Video de fondo optimizado - oculto por problemas de CORS, usando CSS como fallback */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    display: none; /* Ocultar video por problemas de CORS */
+}
+
+.background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(110, 142, 251, 0.3), rgba(167, 119, 227, 0.3));
+    z-index: 1;
+}
+
+
+
+.stat-trend.negative {
+    color: #F44336;
+}
+
+/* Estilos para tráfico de referencia */
+.stats-section {
+    background-color: var(--container-bg);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.stats-section h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+/* Estilos para estadísticas de clics */
+.clicks-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.click-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.platform-name {
+    font-weight: 600;
+    color: #FFD700;
+}
+
+.click-count {
+    color: #fff;
+    font-size: 0.9em;
+}
+
+.referral-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.referral-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.referral-source {
+    min-width: 80px;
+    font-weight: 600;
+    color: #FFD700;
+}
+
+.referral-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.referral-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #FFD700, #FFA500);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.referral-percentage {
+    min-width: 60px;
+    text-align: right;
+    color: #fff;
+    font-size: 0.9em;
+}
+
+/* Mensaje de no datos */
+.no-data {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    padding: 20px;
+}
+
+/* Estilos para datos demográficos */
+.demographics-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.demographic-chart {
+    background-color: var(--container-bg);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.demographic-chart h4 {
+    margin: 15px 0 0;
+    color: var(--text-color);
+}
+
+.demographic-chart canvas {
+    width: 100%;
+    height: 200px;
+}
+
+/* Estilos para el gráfico */
+.stats-chart {
+    background-color: var(--container-bg);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: 0 3px 10px var(--shadow-color);
+    margin-top: 20px;
+}
+
+.chart-placeholder {
+    height: 250px;
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 0 10px;
+}
+
+.chart-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+
+.chart-bar {
+    width: 40px;
+    background: linear-gradient(to top, var(--accent-color), #a29bfe);
+    border-radius: 5px 5px 0 0;
+    transition: height 0.5s ease;
+}
+
+/* Ajustes para modo oscuro */
+.dark-theme .modal-content,
+.dark-theme .stats-header select,
+.dark-theme .stat-card,
+.dark-theme .stats-chart {
+    background-color: var(--container-bg);
+}
+
+.dark-theme .premium-login input {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: var(--text-color);
+}
+
+.dark-theme .chart-bar {
+    background: linear-gradient(to top, var(--accent-color), #6157da);
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--container-bg);
+    color: var(--text-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    z-index: 100;
+    transition: transform 0.3s;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.premium-activator {
+    position: fixed;
+    top: 20px;
+    right: 70px;
+    background: var(--premium);
+    color: #333;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    z-index: 100;
+    transition: transform 0.3s;
+}
+
+.profile-container {
+    width: 100%;
+    max-width: 550px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    padding: 40px 30px;
+    text-align: center;
+    animation: fadeIn 1s ease;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.dark-theme .profile-container {
+    background-color: rgba(30, 30, 30, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animación para elementos al hacer scroll */
+.link-btn, .profile-header, .social-icons {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.link-btn.visible, .profile-header.visible, .social-icons.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.profile-header {
+    margin-bottom: 35px;
+}
+
+.profile-photo-container {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 20px;
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--container-bg);
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform 0.5s ease;
+}
+
+.profile-photo:hover {
+    transform: scale(1.05);
+}
+
+h1 {
+    font-size: 2.2em;
+    font-weight: 700;
+    margin: 15px 0 10px;
+    background: linear-gradient(45deg, var(--accent-color), #a29bfe);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.bio {
+    font-size: 1.1em;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.2em;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.social-icon.instagram { background: var(--instagram); opacity: 0.8; }
+.social-icon.tiktok { background: var(--tiktok); opacity: 0.8; }
+.social-icon.youtube { background: var(--youtube); opacity: 0.8; }
+.social-icon.twitter { background: var(--twitter); opacity: 0.8; }
+
+.links-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.link-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    color: white;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    box-shadow: 0 5px 15px var(--shadow-color);
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.link-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+}
+
+.link-btn:hover::before {
+    transform: translateX(0);
+}
+
+.link-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--shadow-color);
+}
+
+.link-btn i {
+    margin-bottom: 8px;
+    font-size: 1.4em;
+}
+
+.link-description {
+    font-size: 0.8em;
+    font-weight: 400;
+    opacity: 0.9;
+    margin-top: 5px;
+}
+
+/* Colores para cada red social */
+.instagram-btn { background: var(--instagram); opacity: 0.8; }
+.tiktok-btn { background: var(--tiktok); opacity: 0.8; }
+.youtube-btn { background: var(--youtube); opacity: 0.8; }
+.twitter-btn { background: var(--twitter); opacity: 0.8; }
+.facebook-btn { background: var(--facebook); opacity: 0.8; }
+.onlyfans-btn { background: var(--onlyfans); opacity: 0.8; }
+.whatsapp-btn { background: var(--whatsapp); opacity: 0.8; }
+.telegram-btn { background: var(--telegram); opacity: 0.8; }
+
+footer {
+    margin-top: 40px;
+    font-size: 0.8em;
+    color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 30px 20px;
+        width: 95%;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .bio {
+        font-size: 0.9em;
+    }
+    
+    .link-btn {
+        padding: 14px;
+    }
+    
+    .social-icons {
+        gap: 10px;
+    }
+    
+    .social-icon {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        padding: 25px 15px;
+        width: 100%;
+        border-radius: 12px;
+    }
+    
+    .profile-photo-container {
+        width: 110px;
+        height: 110px;
+    }
+    
+    h1 {
+        font-size: 1.6em;
+    }
+    
+    .bio {
+        font-size: 0.85em;
+        margin-bottom: 15px;
+    }
+    
+    .link-btn {
+        padding: 12px;
+        border-radius: 12px;
+    }
+    
+    .link-btn i {
+        font-size: 1.2em;
+    }
+    
+    .link-description {
+        font-size: 0.75em;
+    }
+    
+    .theme-toggle {
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 320px) {
+    .profile-container {
+        padding: 20px 12px;
+    }
+    
+    .profile-photo-container {
+        width: 90px;
+        height: 90px;
+    }
+    
+    h1 {
+        font-size: 1.4em;
+    }
+    
+    .social-icons {
+        gap: 8px;
+    }
+    
+    .social-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9em;
+    }
+    
+    .links-section {
+        gap: 12px;
+    }
+}
+
+/* Asegurar que la imagen sea responsiva */
+.profile-photo {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Optimizaciones para ultra responsividad */
+@media (max-width: 1200px) {
+    .profile-container {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 992px) {
+    .profile-container {
+        max-width: 95%;
+        padding: 35px 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 30px 20px;
+        width: 95%;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .bio {
+        font-size: 0.9em;
+    }
+    
+    .link-btn {
+        padding: 14px;
+    }
+    
+    .social-icons {
+        gap: 10px;
+    }
+    
+    .social-icon {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        padding: 25px 15px;
+        width: 100%;
+        border-radius: 12px;
+    }
+    
+    .profile-photo-container {
+        width: 110px;
+        height: 110px;
+    }
+    
+    h1 {
+        font-size: 1.6em;
+    }
+    
+    .bio {
+        font-size: 0.85em;
+        margin-bottom: 15px;
+    }
+    
+    .link-btn {
+        padding: 12px;
+        border-radius: 12px;
+    }
+    
+    .link-btn i {
+        font-size: 1.2em;
+    }
+    
+    .link-description {
+        font-size: 0.75em;
+    }
+    
+    .theme-toggle {
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 320px) {
+    .profile-container {
+        padding: 20px 12px;
+    }
+    
+    .profile-photo-container {
+        width: 90px;
+        height: 90px;
+    }
+    
+    h1 {
+        font-size: 1.4em;
+    }
+    
+    .social-icons {
+        gap: 8px;
+    }
+    
+    .social-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9em;
+    }
+    
+    .links-section {
+        gap: 12px;
+    }
+}
+
+/* Optimización para dispositivos muy pequeños */
+@media (max-width: 280px) {
+    body {
+        padding: 10px;
+    }
+    
+    .profile-container {
+        padding: 15px 10px;
+    }
+    
+    .profile-photo-container {
+        width: 80px;
+        height: 80px;
+    }
+    
+    h1 {
+        font-size: 1.2em;
+    }
+    
+    .social-icon {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8em;
+    }
+}
+
+/* Optimización para tablets en modo horizontal */
+@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+    .profile-container {
+        max-width: 80%;
+    }
+}
+
+/* Optimización para tablets en modo vertical */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .profile-container {
+        max-width: 90%;
+    }
+}
+
+/* Mejorar legibilidad en pantallas pequeñas */
+@media (max-width: 480px) {
+    .link-btn {
+        font-size: 0.9em;
+    }
+    
+    footer {
+        font-size: 0.7em;
+    }
+}
+
+/* Optimizar para dispositivos con notch */
+@supports (padding-top: env(safe-area-inset-top)) {
+    body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+/* Optimización para modo oscuro en dispositivos móviles */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #121212;
+        --container-bg: #1e1e1e;
+        --text-color: #f8f9fa;
+        --text-secondary: #b0b0b0;
+        --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+}

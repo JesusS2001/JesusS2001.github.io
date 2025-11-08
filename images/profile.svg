@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Fondo circular -->
+  <circle cx="100" cy="100" r="100" fill="#6c5ce7" />
+  
+  <!-- Silueta de persona -->
+  <circle cx="100" cy="85" r="40" fill="#ffffff" />
+  <path d="M100,135 C65,135 40,160 40,200 L160,200 C160,160 135,135 100,135 Z" fill="#ffffff" />
+  
+  <!-- Detalles decorativos -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#a29bfe" stroke-width="2" />
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#a29bfe" stroke-width="1" stroke-dasharray="5,5" />
+</svg>

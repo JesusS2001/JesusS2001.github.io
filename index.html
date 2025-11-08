@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Torres | Bio Links</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="background.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Animación para el modal */
+        .modal {
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+        
+        .modal.show {
+            opacity: 1;
+        }
+        
+        .modal-content {
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+    
+    <!-- Fondo animado alternativo (si el video falla) -->
+    <div class="background-fallback"></div>
+    <div class="background-pattern"></div>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
+    <!-- Video de fondo optimizado -->
+    <div class="video-background">
+        <video autoplay muted loop playsinline preload="metadata" class="background-video">
+            <source src="https://cdn.pixabay.com/vimeo/328940682/runway-23434.mp4" type="video/mp4">
+            <!-- Fallback para navegadores que no soportan video -->
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1920&h=1080&fit=crop" alt="Modelaje background" loading="lazy">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+    
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+    
+    <div class="premium-activator" title="Activar modo premium" style="display: none;">
+        <i class="fas fa-key"></i>
+    </div>
+    
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-photo-container">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face" alt="Foto de perfil" class="profile-photo" loading="lazy">
+            </div>
+            <h1>Ana Torres</h1>
+            <p class="bio">Creadora de contenido y modelo. ¡Sígueme en todas mis redes!</p>
+            
+            <div class="social-icons">
+                <a href="#" class="social-icon instagram trackable-link" data-platform="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon tiktok trackable-link" data-platform="tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="social-icon youtube trackable-link" data-platform="youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-icon twitter trackable-link" data-platform="twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="links-section">
+            <a href="#" class="link-btn instagram-btn trackable-link" data-platform="instagram" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
+                <span class="link-description">Fotos y momentos especiales</span>
+            </a>
+            <a href="#" class="link-btn tiktok-btn trackable-link" data-platform="tiktok" target="_blank">
+                <i class="fab fa-tiktok"></i> TikTok
+                <span class="link-description">Videos cortos y tendencias</span>
+            </a>
+            <a href="#" class="link-btn youtube-btn trackable-link" data-platform="youtube" target="_blank">
+                <i class="fab fa-youtube"></i> YouTube
+                <span class="link-description">Vlogs y contenido exclusivo</span>
+            </a>
+            <a href="#" class="link-btn twitter-btn trackable-link" data-platform="twitter" target="_blank">
+                <i class="fab fa-twitter"></i> Twitter
+                <span class="link-description">Noticias y actualizaciones</span>
+            </a>
+            <a href="#" class="link-btn facebook-btn trackable-link" data-platform="facebook" target="_blank">
+                <i class="fab fa-facebook"></i> Facebook
+                <span class="link-description">Comunidad y eventos</span>
+            </a>
+            <a href="#" class="link-btn onlyfans-btn trackable-link" data-platform="onlyfans" target="_blank">
+                <i class="fas fa-lock"></i> OnlyFans
+                <span class="link-description">Contenido premium</span>
+            </a>
+            <a href="#" class="link-btn whatsapp-btn trackable-link" data-platform="whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+                <span class="link-description">Contacto directo</span>
+            </a>
+            <a href="#" class="link-btn telegram-btn trackable-link" data-platform="telegram" target="_blank">
+                <i class="fab fa-telegram"></i> Telegram
+                <span class="link-description">Canal de noticias</span>
+            </a>
+        </div>
+        
+        <footer>
+            <p>© 2023 Ana Torres | Todos los derechos reservados</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo con gradiente de moda -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#feca57;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#48dbfb;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="skinGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fdbcb4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f4a261;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="hairGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b4513;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a0522d;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Círculo de fondo -->
+  <circle cx="200" cy="200" r="200" fill="url(#bgGradient)"/>
+  
+  <!-- Círculo interior blanco -->
+  <circle cx="200" cy="200" r="180" fill="white" opacity="0.9"/>
+  
+  <!-- Cuello -->
+  <ellipse cx="200" cy="320" rx="40" ry="60" fill="url(#skinGradient)"/>
+  
+  <!-- Cara -->
+  <ellipse cx="200" cy="220" rx="80" ry="90" fill="url(#skinGradient)"/>
+  
+  <!-- Cabello -->
+  <path d="M 120 180 Q 200 120 280 180 Q 280 200 270 220 Q 260 200 240 190 Q 200 170 160 190 Q 140 200 130 180" fill="url(#hairGradient)"/>
+  
+  <!-- Flequillo -->
+  <path d="M 140 160 Q 170 140 200 160 Q 230 140 260 160" fill="url(#hairGradient)"/>
+  
+  <!-- Cejas -->
+  <ellipse cx="175" cy="200" rx="15" ry="5" fill="#654321"/>
+  <ellipse cx="225" cy="200" rx="15" ry="5" fill="#654321"/>
+  
+  <!-- Ojos -->
+  <ellipse cx="175" cy="210" rx="12" ry="8" fill="white"/>
+  <ellipse cx="225" cy="210" rx="12" ry="8" fill="white"/>
+  <circle cx="175" cy="210" r="6" fill="#2a9d8f"/>
+  <circle cx="225" cy="210" r="6" fill="#2a9d8f"/>
+  <circle cx="175" cy="210" r="3" fill="black"/>
+  <circle cx="225" cy="210" r="3" fill="black"/>
+  
+  <!-- Pupilas -->
+  <circle cx="175" cy="210" r="1" fill="white"/>
+  <circle cx="225" cy="210" r="1" fill="white"/>
+  
+  <!-- Nariz -->
+  <ellipse cx="200" cy="230" rx="8" ry="12" fill="#f4a261" opacity="0.7"/>
+  
+  <!-- Labios -->
+  <path d="M 185 250 Q 200 260 215 250" fill="#e76f51" opacity="0.8"/>
+  
+  <!-- Sonrisa -->
+  <path d="M 180 255 Q 200 270 220 255" fill="none" stroke="#e76f51" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Mejillas (rubor) -->
+  <circle cx="160" cy="230" r="15" fill="#ff6b6b" opacity="0.3"/>
+  <circle cx="240" cy="230" r="15" fill="#ff6b6b" opacity="0.3"/>
+  
+  <!-- Accesorio de moda - Aretes -->
+  <circle cx="150" cy="220" r="5" fill="#ffd93d"/>
+  <circle cx="250" cy="220" r="5" fill="#ffd93d"/>
+  
+  <!-- Marco decorativo -->
+  <circle cx="200" cy="200" r="190" fill="none" stroke="white" stroke-width="4" opacity="0.5"/>
+  <circle cx="200" cy="200" r="170" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Texto decorativo -->
+  <text x="200" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#6c757d" opacity="0.7">Modelo</text>
+</svg>
