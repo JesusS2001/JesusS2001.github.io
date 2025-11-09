@@ -100,7 +100,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 0; /* por encima del fallback/pattern */
     overflow: hidden;
     display: block; /* Mostrar video de fondo */
     pointer-events: none; /* No bloquear interacción con el contenido */
@@ -112,6 +112,14 @@ body {
     object-fit: cover;
     filter: brightness(0.7);
     pointer-events: none;
+}
+
+/* Asegurar que el contenido esté por encima del video */
+.profile-container,
+.theme-toggle,
+.premium-activator {
+    position: relative;
+    z-index: 2;
 }
 
 .video-overlay {
