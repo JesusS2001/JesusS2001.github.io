@@ -48,19 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Función para alternar entre modo claro y oscuro
 document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.querySelector('.theme-toggle');
-    const body = document.body;
-    const themeIcon = document.querySelector('.theme-toggle i');
     const backgroundVideo = document.querySelector('.background-video');
-    
-    // Optimización: Cargar tema de forma asíncrona
-    requestAnimationFrame(() => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            body.classList.add('dark-theme');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
-        }
-    });
     
     // Inicializar componentes con prioridad
     initCriticalComponents();
@@ -73,22 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Función para inicializar componentes críticos primero
     function initCriticalComponents() {
-        // Configurar el botón de tema inmediatamente
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                body.classList.toggle('dark-theme');
-                
-                // Cambiar el icono según el tema
-                if (body.classList.contains('dark-theme')) {
-                    themeIcon.classList.replace('fa-moon', 'fa-sun');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    themeIcon.classList.replace('fa-sun', 'fa-moon');
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-        }
-        
         // Configurar lazy loading para imágenes
         const images = document.querySelectorAll('img[data-src]');
         images.forEach(img => lazyLoadObserver.observe(img));

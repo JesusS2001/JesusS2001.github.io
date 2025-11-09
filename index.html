@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Integración ligera de petite-vue para reactividad sin build -->
+    <script src="https://unpkg.com/petite-vue@0.4.1/dist/petite-vue.iife.js" defer></script>
     <style>
         /* Animación para el modal */
         .modal {
@@ -30,7 +32,17 @@
         }
     </style>
 </head>
-<body>
+<body v-scope="{ 
+    dark: false,
+    mounted() {
+        this.dark = (localStorage.getItem('theme') === 'dark');
+    },
+    toggleTheme() {
+        this.dark = !this.dark;
+        localStorage.setItem('theme', this.dark ? 'dark' : 'light');
+    }
+}"
+:class="dark ? 'dark-theme' : ''">
     <!-- Preloader -->
     <div class="preloader" id="preloader">
         <div class="preloader-spinner"></div>
@@ -69,8 +81,8 @@
         <div class="video-overlay"></div>
     </div>
     
-    <div class="theme-toggle">
-        <i class="fas fa-moon"></i>
+    <div class="theme-toggle" @click="toggleTheme">
+        <i :class="['fas', dark ? 'fa-sun' : 'fa-moon']"></i>
     </div>
     
     <div class="premium-activator" title="Activar modo premium" style="display: none;">
@@ -133,6 +145,14 @@
         </footer>
     </div>
     
+    <script>
+        // Activar petite-vue sobre los v-scope del documento
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.PetiteVue) {
+                window.PetiteVue.createApp().mount();
+            }
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
