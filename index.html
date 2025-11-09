@@ -55,8 +55,12 @@
     <!-- Video de fondo optimizado -->
     <div class="video-background">
         <video autoplay muted loop playsinline preload="metadata" class="background-video" crossorigin="anonymous">
+            <!-- Fuente local en WebM (si luego se descarga) -->
+            <source src="videos/model-runway.webm" type="video/webm">
             <!-- Preferir video local si existe -->
             <source src="videos/model-runway.mp4" type="video/mp4">
+            <!-- Fallback externo confiable (Archive.org) -->
+            <source src="https://archive.org/download/FashionShow/Fashion_Show_Angkor_Dance_Troops_512kb.mp4" type="video/mp4">
             <!-- Fallback externo libre (Pixabay) -->
             <source src="https://cdn.pixabay.com/vimeo/328940682/runway-23434.mp4" type="video/mp4">
             <!-- Fallback para navegadores que no soportan video -->
