@@ -102,7 +102,8 @@ body {
     height: 100%;
     z-index: -1;
     overflow: hidden;
-    display: none; /* Ocultar video por problemas de CORS */
+    display: block; /* Mostrar video de fondo */
+    pointer-events: none; /* No bloquear interacción con el contenido */
 }
 
 .background-video {
@@ -110,6 +111,7 @@ body {
     height: 100%;
     object-fit: cover;
     filter: brightness(0.7);
+    pointer-events: none;
 }
 
 .video-overlay {
