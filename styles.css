@@ -422,15 +422,13 @@ h1 {
     font-size: 2.2em;
     font-weight: 700;
     margin: 15px 0 10px;
-    background: linear-gradient(45deg, var(--accent-color), #a29bfe);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .bio {
     font-size: 1.1em;
-    color: var(--text-secondary);
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
@@ -451,6 +449,11 @@ h1 {
     color: white;
     font-size: 1.2em;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-icon img {
+    width: 1.2em;
+    height: 1.2em;
 }
 
 .social-icon:hover {
@@ -512,6 +515,12 @@ h1 {
 .link-btn i {
     margin-bottom: 8px;
     font-size: 1.4em;
+}
+
+.link-btn img {
+    margin-bottom: 8px;
+    width: 1.4em;
+    height: 1.4em;
 }
 
 .link-description {
