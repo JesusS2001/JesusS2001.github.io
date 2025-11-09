@@ -55,6 +55,9 @@
     <!-- Video de fondo optimizado -->
     <div class="video-background">
         <video autoplay muted loop playsinline preload="metadata" class="background-video" crossorigin="anonymous">
+            <!-- Preferir video local si existe -->
+            <source src="videos/model-runway.mp4" type="video/mp4">
+            <!-- Fallback externo libre (Pixabay) -->
             <source src="https://cdn.pixabay.com/vimeo/328940682/runway-23434.mp4" type="video/mp4">
             <!-- Fallback para navegadores que no soportan video -->
             <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1920&h=1080&fit=crop" alt="Modelaje background" loading="lazy">
