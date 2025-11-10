@@ -11,6 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Integración ligera de petite-vue para reactividad sin build -->
     <script src="https://unpkg.com/petite-vue@0.4.1/dist/petite-vue.iife.js" defer></script>
+    <!-- Librería de QR ligera -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
     <style>
         /* Animación para el modal */
         .modal {
@@ -84,6 +86,9 @@
     <div class="theme-toggle" @click="toggleTheme">
         <i :class="['fas', dark ? 'fa-sun' : 'fa-moon']"></i>
     </div>
+    <div class="share-toggle" @click="openQR" title="Compartir">
+        <i class="fas fa-share-alt"></i>
+    </div>
     
     <div class="premium-activator" title="Activar modo premium" style="display: none;">
         <i class="fas fa-key"></i>
@@ -145,11 +150,114 @@
         </footer>
     </div>
     
+    <!-- Panel de métricas en vivo -->
+    <div class="stats-section" v-if="metricsReady">
+        <h3>Métricas en vivo</h3>
+        <div class="stats-header">
+            <div class="stat-card">
+                <div class="stat-value">{{ totalVisits }}</div>
+                <div class="stat-label">Visitas totales</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">{{ totalClicks }}</div>
+                <div class="stat-label">Clics totales</div>
+            </div>
+        </div>
+        <div class="referral-stats" v-if="topPlatforms.length">
+            <div class="referral-item" v-for="item in topPlatforms" :key="item.platform">
+                <span class="referral-source">{{ item.platform }}</span>
+                <div class="referral-bar">
+                    <div class="referral-progress" :style="{ width: item.percent + '%' }"></div>
+                </div>
+                <span class="click-count">{{ item.count }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal QR -->
+    <div class="modal" :class="{ show: qrOpen }" @click.self="closeQR">
+        <div class="modal-content">
+            <h3>QR para compartir</h3>
+            <div id="qrCanvas" style="display: flex; justify-content: center; padding: 10px;"></div>
+            <div class="modal-actions" style="display:flex; gap:10px; justify-content:center; padding-bottom:10px;">
+                <button class="link-btn" @click="downloadQR"><i class="fas fa-download"></i> Descargar</button>
+                <button class="link-btn" @click="closeQR"><i class="fas fa-times"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+    
     <script>
         // Activar petite-vue sobre los v-scope del documento
         document.addEventListener('DOMContentLoaded', () => {
             if (window.PetiteVue) {
-                window.PetiteVue.createApp().mount();
+                window.PetiteVue.createApp({
+                    mounted() {
+                        this.dark = (localStorage.getItem('theme') === 'dark');
+                        this.refreshMetrics();
+                        // Actualiza métricas en vivo cada 1s
+                        this._timer = setInterval(() => this.refreshMetrics(), 1000);
+                    },
+                    unmounted() {
+                        if (this._timer) clearInterval(this._timer);
+                    },
+                    dark: false,
+                    qrOpen: false,
+                    totalVisits: 0,
+                    totalClicks: 0,
+                    topPlatforms: [],
+                    metricsReady: false,
+                    toggleTheme() {
+                        this.dark = !this.dark;
+                        localStorage.setItem('theme', this.dark ? 'dark' : 'light');
+                    },
+                    refreshMetrics() {
+                        const totalVisits = parseInt(localStorage.getItem('biolink_total_visits') || '0');
+                        const totalClicks = parseInt(localStorage.getItem('biolink_total_clicks') || '0');
+                        const clicksStore = JSON.parse(localStorage.getItem('biolink_clicks') || '{}');
+                        const today = new Date().toDateString();
+                        const todayClicks = clicksStore[today] || {};
+                        const entries = Object.entries(todayClicks).map(([platform, count]) => ({ platform, count }));
+                        const sum = entries.reduce((acc, e) => acc + e.count, 0) || 1;
+                        const top = entries
+                            .sort((a,b) => b.count - a.count)
+                            .slice(0, 5)
+                            .map(e => ({ ...e, percent: Math.round((e.count / sum) * 100) }));
+                        this.totalVisits = totalVisits;
+                        this.totalClicks = totalClicks;
+                        this.topPlatforms = top;
+                        this.metricsReady = true;
+                    },
+                    openQR() {
+                        this.qrOpen = true;
+                        setTimeout(() => {
+                            const el = document.getElementById('qrCanvas');
+                            if (el) {
+                                el.innerHTML = '';
+                                new QRCode(el, {
+                                    text: window.location.href,
+                                    width: 200,
+                                    height: 200,
+                                    colorDark : this.dark ? '#ffffff' : '#000000',
+                                    colorLight : this.dark ? '#00000000' : '#ffffff'
+                                });
+                            }
+                        }, 0);
+                    },
+                    closeQR() { this.qrOpen = false; },
+                    downloadQR() {
+                        const el = document.getElementById('qrCanvas');
+                        if (!el) return;
+                        const canvas = el.querySelector('canvas');
+                        if (!canvas) return;
+                        const url = canvas.toDataURL('image/png');
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'biolink-qr.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                    }
+                }).mount();
             }
         });
     </script>
